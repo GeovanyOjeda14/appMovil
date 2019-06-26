@@ -392,13 +392,14 @@ load;
   }
 
   datosUser(){
+    // console.log('info', this.info);
 
     // console.log(this.global.id_usuario);
     this.api.getUser(this.global.id_usuario).subscribe((data)=>{
       // console.log("data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-      console.log(data);
-      this.usuario = data[0];
+      console.log('data', data);
+      this.usuario = data;
       this.global.infoPerfil = this.usuario;
   
       this.info = this.global.infoPerfil;

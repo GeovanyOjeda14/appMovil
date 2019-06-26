@@ -72,12 +72,15 @@
             "cordova-sqlite-storage": {},
             "cordova-plugin-facebook4": {
                 "APP_ID": "2116883488382244",
-                "APP_NAME": "prevenir_express"
+                "APP_NAME": "prevenir_express",
+                "FACEBOOK_ANDROID_SDK_VERSION": "4.+"
             },
             "cordova-plugin-whitelist": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
-            "cordova-plugin-ionic-webview": {},
+            "cordova-plugin-ionic-webview": {
+                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+            },
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-telerik-imagepicker": {
                 "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"

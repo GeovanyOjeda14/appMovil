@@ -57,6 +57,8 @@ export class UserPage {
   posisionDtp;
   posisionMnp;
   load;
+  tipoDocumento;
+  estadoCivil;
 
   
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, 
@@ -87,6 +89,25 @@ export class UserPage {
       var ff = moment(this.infoUser.fecha_nacimiento ).format('DD-M-YYYY');
       
     }
+
+
+
+    // TIPO DOCUMENTOS
+
+    this.tipoDocumento = [{tipo : 'CC' , nombre : 'Cédula de Ciudadanía'},
+                          {tipo : 'CE' , nombre : 'Cédula de Extranjería'},
+                          {tipo : 'PA' , nombre : 'Pasaporte'},
+                          {tipo : 'RC' , nombre : 'Registro Civil'},
+                          {tipo : 'TI' , nombre : 'Tarjeta de Identidad'}];
+
+    this.estadoCivil = [{tipo : 'Solter@' , nombre : 'Solter@'},
+                        {tipo : 'Comprometid@' , nombre : 'Comprometid@'},
+                        {tipo : 'Casad@' , nombre : 'Casad@'},
+                        {tipo : 'Union libre' , nombre : 'Union libre'},
+                        {tipo : 'Separad@' , nombre : 'Separad@'},
+                        {tipo : 'Divorciad@' , nombre : 'Divorciad@'},
+                        {tipo : 'Viud@' , nombre : 'Viud@'},
+                        {tipo : 'Noviazgo' , nombre : 'Noviazgo'}];
    
     console.log(this.infoUser);
     
@@ -101,11 +122,23 @@ export class UserPage {
       whats : [this.infoUser.telefonowatshapp],
       fecha : [''],
       fecha2 : [ff],
-   
+      barrio : [this.infoUser.barrio],
+      tipoDocumento : [this.infoUser.tipoDocumento],
+      estadoCivil : [this.infoUser.estadoCivil],
+      ocupacion : [this.infoUser.ocupacion, [Validators.pattern('[a-z A-z]*')]],
+      eps : [this.infoUser.eps, [Validators.pattern('[a-z A-z]*')]]
 
     });
 
    }
+
+
+
+
+
+
+
+
    else if (this.global.admin === true && this.global.medico === false) {
     this.infoUser = this.global.infoPerfil;
     this.foto = this.global.apiUrl+this.infoUser.avatar;
@@ -315,7 +348,9 @@ export class UserPage {
         
         let datos={cedula:this.datosUser.value.identificacion , nombre:this.datosUser.value.nombres, apellidos:this.datosUser.value.apellidos,
           direccion:this.datosUser.value.direccion, telefono:this.datosUser.value.telefono, telefonowatshapp: this.datosUser.value.whats,
-          fecha_nacimiento:this.datosUser.value.fecha, id:this.global.id_usuario, id_municipio : this.mncpSelect}
+          fecha_nacimiento:this.datosUser.value.fecha, id:this.global.id_usuario, id_municipio : this.mncpSelect, eps : this.datosUser.value.eps,
+          barrio : this.datosUser.value.barrio, ocupacion : this.datosUser.value.ocupacion, estadoCivil : this.datosUser.value.estadoCivil, 
+          tipoDocumento : this.datosUser.value.tipoDocumento}
           
           // console.log(datos);
  
@@ -362,7 +397,9 @@ export class UserPage {
 
         let datos={cedula:this.datosUser.value.identificacion , nombre:this.datosUser.value.nombres, apellidos:this.datosUser.value.apellidos,
           direccion:this.datosUser.value.direccion, telefono:this.datosUser.value.telefono, telefonowatshapp: this.datosUser.value.whats,
-          fecha_nacimiento:this.infoUser.fecha_nacimiento, id:this.global.id_usuario , id_municipio : this.mncpSelect}
+          fecha_nacimiento:this.infoUser.fecha_nacimiento, id:this.global.id_usuario , id_municipio : this.mncpSelect, eps : this.datosUser.value.eps,
+          barrio : this.datosUser.value.barrio, ocupacion : this.datosUser.value.ocupacion, estadoCivil : this.datosUser.value.estadoCivil, 
+          tipoDocumento : this.datosUser.value.tipoDocumento}
           // console.log(this.datosUser.value.identificacion);
           console.log(datos);
             

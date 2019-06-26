@@ -71,7 +71,25 @@
   </div>
   <div class="contacto">
     <h3>Datos de contacto</h3>
-    <ion-item>
+
+    <!-- TIPO DOCUMENTO -->
+          <ion-item>
+            <ion-label *ngIf="this.infoUser.tipoDocumento">
+              <ion-icon  name="card"></ion-icon>
+            </ion-label>
+
+            <ion-label *ngIf="!this.infoUser.tipoDocumento">Tipo documento</ion-label>
+
+            <ion-select *ngIf="!this.infoUser.tipoDocumento" formControlName="tipoDocumento">
+              <ion-option *ngFor="let tp of tipoDocumento" value="{{tp.tipo}}">{{tp.combre}}</ion-option>
+            </ion-select>
+
+            <ion-input *ngIf="this.infoUser.tipoDocumento" placeholder="Tipo de documento" formControlName="tipoDocumento" type="text" readonly></ion-input>
+          </ion-item>
+
+
+    <!-- IDENTIFICACION -->
+          <ion-item>
             <ion-label>
               <ion-icon name="card"></ion-icon>
             </ion-label>
@@ -88,6 +106,20 @@
               </ion-label>
               <ion-input placeholder="Ingresa tu dirección" type="text"  formControlName="direccion" ></ion-input>
             </ion-item>
+
+
+            <!-- BARRIO -->
+
+            <ion-item>
+              <ion-label>
+                <ion-icon name="locate"></ion-icon>
+              </ion-label>
+              <ion-input placeholder="Ingresa el barrio" type="text"  formControlName="barrio" ></ion-input>
+            </ion-item>
+
+
+            <!-- FECHA NACIMIENTO -->
+
             <ion-item>
               <ion-label icon-left>
                 <ion-icon name="calendar"></ion-icon>
@@ -127,6 +159,27 @@
               </ion-select>
             </ion-item>
 
+            <!-- ESTADO CIVIL -->
+
+            <ion-item>
+
+                <ion-label *ngIf="this.infoUser.estadoCivil">
+                    <ion-icon  name="person"></ion-icon>
+                  </ion-label>
+      
+                  <ion-label *ngIf="!this.infoUser.estadoCivil">Estado civil</ion-label>
+      
+                  <ion-select *ngIf="!this.infoUser.estadoCivil" formControlName="estadoCivil">
+                    <ion-option *ngFor="let tp of estadoCivil" value="{{tp.tipo}}">{{tp.combre}}</ion-option>
+                  </ion-select>
+      
+                  <ion-input *ngIf="this.infoUser.estadoCivil" placeholder="Tipo de documento" formControlName="estadoCivil" type="text" readonly></ion-input>
+
+            </ion-item>
+
+
+            <!-- TELEFONO -->
+
             <ion-item>
                 <ion-label>
                   <ion-icon name="call"></ion-icon>
@@ -137,12 +190,33 @@
                   <p color="danger" ion-text *ngIf="datosUser.get('telefono').hasError('required')">* El campo es requerido</p>
                   <p color="danger" ion-text *ngIf="datosUser.get('telefono').hasError('pattern')">* El campo solo acepta numeros</p>
               </ion-item>
+
+              <!-- WhatsApp -->
+
               <ion-item>
                   <ion-label>
                     <ion-icon name="logo-whatsapp"></ion-icon>
                   </ion-label>
                   <ion-input placeholder="Ingresa tu WhatsApp *" type="number" formControlName="whats"></ion-input>
-                </ion-item>       
+                </ion-item>    
+                
+                <!-- OCUPACION -->
+
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="hammer"></ion-icon>
+                      </ion-label>
+                      <ion-input placeholder="Ingresa tu ocupacion" type="text" formControlName="ocupacion"></ion-input>
+                </ion-item>
+
+                <!-- EPS -->
+
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="medkit"></ion-icon>
+                      </ion-label>
+                      <ion-input placeholder="Ingresa tu ocupacion" type="text" formControlName="eps"></ion-input>
+                </ion-item>
   </div>
 
   <button icon-left ion-button block round [disabled]="!this.datosUser.valid">
